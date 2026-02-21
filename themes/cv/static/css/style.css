@@ -1,0 +1,260 @@
+/* ============================================================
+   Design tokens
+   ============================================================ */
+:root {
+  --accent:    #1a6b72;       /* dark teal */
+  --accent-lt: #e8f4f5;
+  --text:      #1c1c1c;
+  --muted:     #555;
+  --border:    #dde3e4;
+  --bg:        #ffffff;
+
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+  --max-w: 860px;
+  --gap: 1.5rem;
+}
+
+/* ============================================================
+   Reset / base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 2rem 1rem 4rem;
+}
+
+main {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+ul { padding-left: 1.25rem; }
+li { margin: 0.2rem 0; }
+
+/* ============================================================
+   Header
+   ============================================================ */
+.cv-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: var(--gap);
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: var(--gap);
+}
+
+.cv-header__name h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.cv-header__titles {
+  margin-top: 0.2rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.cv-header__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+  text-align: right;
+}
+
+.cv-header__contact span { color: var(--muted); }
+
+.cv-download {
+  display: inline-block;
+  margin-top: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  background: var(--accent);
+  color: #fff !important;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none !important;
+  transition: opacity 0.15s;
+}
+.cv-download:hover { opacity: 0.85; }
+
+/* ============================================================
+   Sections
+   ============================================================ */
+.cv-section {
+  margin-bottom: var(--gap);
+  padding-bottom: var(--gap);
+  border-bottom: 1px solid var(--border);
+}
+.cv-section:last-child { border-bottom: none; }
+
+.cv-section h2 {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+/* ============================================================
+   Summary
+   ============================================================ */
+.cv-stack {
+  margin: 0.75rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.25rem 1rem;
+  background: var(--accent-lt);
+  border-left: 3px solid var(--accent);
+  padding: 0.6rem 0.85rem;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.875rem;
+}
+
+.cv-summary__personal {
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   Experience
+   ============================================================ */
+.cv-company {
+  margin-bottom: 1.4rem;
+}
+.cv-company:last-child { margin-bottom: 0; }
+
+.cv-company__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.cv-company__name {
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.cv-company__location {
+  color: var(--muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.cv-role {
+  padding-left: 1rem;
+  border-left: 2px solid var(--border);
+  margin-bottom: 0.85rem;
+}
+.cv-role:last-child { margin-bottom: 0; }
+
+.cv-role__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.cv-role__title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.cv-role__dates {
+  color: var(--muted);
+  font-size: 0.825rem;
+  white-space: nowrap;
+}
+
+.cv-role__desc {
+  color: var(--muted);
+  font-size: 0.875rem;
+  margin-bottom: 0.4rem;
+}
+
+.cv-bullets {
+  font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.cv-bullets li strong { color: var(--accent); }
+
+/* ============================================================
+   Education
+   ============================================================ */
+.cv-edu { margin-bottom: 0.75rem; }
+.cv-edu__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+/* ============================================================
+   Skills
+   ============================================================ */
+.cv-skills__langs {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   Print
+   ============================================================ */
+@media print {
+  body { padding: 0; color: #000; }
+  .cv-download { display: none; }
+  .cv-header { border-bottom-color: #000; }
+  .cv-section h2 { color: #000; }
+  a { color: #000; text-decoration: none; }
+  .cv-role { border-left-color: #ccc; }
+  .cv-stack { background: #f5f5f5; border-left-color: #333; }
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 600px) {
+  .cv-header { flex-direction: column; }
+  .cv-header__contact { align-items: flex-start; text-align: left; }
+  .cv-company__header,
+  .cv-role__header,
+  .cv-edu__header { flex-direction: column; gap: 0; }
+  .cv-company__location,
+  .cv-role__dates { margin-top: 0.1rem; }
+  .cv-stack { grid-template-columns: 1fr; }
+  .cv-skills__langs { flex-direction: column; gap: 0.4rem; }
+}

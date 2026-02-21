@@ -1,0 +1,7 @@
+baseURL = '/'
+languageCode = 'en-us'
+title = 'Richárd Módis – DevOps Engineer'
+theme = 'cv'
+
+[markup.goldmark.renderer]
+  unsafe = true

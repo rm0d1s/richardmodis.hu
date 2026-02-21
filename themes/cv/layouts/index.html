@@ -1,0 +1,101 @@
+{{ define "main" }}
+{{- $p := .Page.Params }}
+
+<header class="cv-header">
+    <div class="cv-header__name">
+        <h1>{{ $p.name }}</h1>
+        <p class="cv-header__titles">{{ delimit $p.titles " · " }}</p>
+    </div>
+    <nav class="cv-header__contact">
+        {{- with $p.email }}<a href="mailto:{{ . }}">{{ . }}</a>{{- end }}
+        {{- with $p.phone }}<span>{{ . }}</span>{{- end }}
+        {{- with $p.location }}<span>{{ . }}</span>{{- end }}
+        {{- with $p.linkedin }}<a href="https://{{ . }}" target="_blank" rel="noopener">{{ . }}</a>{{- end }}
+        {{- with $p.cv_pdf }}<a class="cv-download" href="{{ . }}" download>Download PDF</a>{{- end }}
+    </nav>
+</header>
+
+{{- with $p.profile }}
+<section class="cv-section">
+    <h2>Summary</h2>
+    <p>{{ .text }}</p>
+    <div class="cv-stack">
+        {{- range .stack }}
+        <div class="cv-stack__item">
+            <strong>{{ .label }}:</strong> {{ .value }}
+        </div>
+        {{- end }}
+    </div>
+    <p class="cv-summary__personal">{{ .personal }}</p>
+</section>
+{{- end }}
+
+{{- with $p.experience }}
+<section class="cv-section">
+    <h2>Experience</h2>
+    {{- range . }}
+    <div class="cv-company">
+        <div class="cv-company__header">
+            <strong class="cv-company__name">{{ .company }}</strong>
+            <span class="cv-company__location">{{ .location }}</span>
+        </div>
+        {{- range .roles }}
+        <div class="cv-role">
+            <div class="cv-role__header">
+                <span class="cv-role__title">{{ .title }}</span>
+                <span class="cv-role__dates">{{ .dates }}</span>
+            </div>
+            {{- with .description }}<p class="cv-role__desc">{{ . }}</p>{{- end }}
+            {{- with .bullets }}
+            <ul class="cv-bullets">
+                {{- range . }}
+                <li>{{ . | markdownify }}</li>
+                {{- end }}
+            </ul>
+            {{- end }}
+        </div>
+        {{- end }}
+    </div>
+    {{- end }}
+</section>
+{{- end }}
+
+{{- with $p.education }}
+<section class="cv-section">
+    <h2>Education</h2>
+    {{- range . }}
+    <div class="cv-edu">
+        <div class="cv-edu__header">
+            <strong>{{ .institution }}</strong>
+            <span class="cv-role__dates">{{ .dates }}</span>
+        </div>
+        <p>{{ .degree }}{{ with .field }}, {{ . }}{{ end }}</p>
+    </div>
+    {{- end }}
+</section>
+{{- end }}
+
+{{- with $p.skills }}
+<section class="cv-section">
+    <h2>Skills</h2>
+    {{- with .top }}
+    <p><strong>Top skills:</strong> {{ delimit . ", " }}</p>
+    {{- end }}
+    {{- with .languages }}
+    <ul class="cv-skills__langs">
+        {{- range . }}<li><strong>{{ .lang }}:</strong> {{ .level }}</li>{{- end }}
+    </ul>
+    {{- end }}
+</section>
+{{- end }}
+
+{{- with $p.certifications }}
+<section class="cv-section">
+    <h2>Certifications</h2>
+    <ul>
+        {{- range . }}<li>{{ . }}</li>{{- end }}
+    </ul>
+</section>
+{{- end }}
+
+{{ end }}
