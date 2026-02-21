@@ -1,4 +1,4 @@
-baseURL = 'https://rm0d1s.github.io/'
+baseURL = '/'
 languageCode = 'en-us'
 title = 'Richárd Módis – DevOps Engineer'
 theme = 'cv'

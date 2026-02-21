@@ -11,7 +11,7 @@
         {{- with $p.phone }}<span>{{ . }}</span>{{- end }}
         {{- with $p.location }}<span>{{ . }}</span>{{- end }}
         {{- with $p.linkedin }}<a href="https://{{ . }}" target="_blank" rel="noopener">{{ . }}</a>{{- end }}
-        {{- with $p.cv_pdf }}<a class="cv-download" href="{{ . }}" download>Download PDF</a>{{- end }}
+        {{- with $p.cv_pdf }}<a class="cv-download" href="{{ . | absURL }}" download>Download PDF</a>{{- end }}
     </nav>
 </header>
 
