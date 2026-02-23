@@ -2,9 +2,18 @@
 {{- $p := .Page.Params }}
 
 <header class="cv-header">
-    <div class="cv-header__name">
-        <h1>{{ $p.name }}</h1>
-        <p class="cv-header__titles">{{ delimit $p.titles " · " }}</p>
+    <div class="cv-header__intro">
+        {{ $avatar := resources.Get "avatar.png" }}
+        {{ if $avatar }}
+        {{ $avatar = $avatar.Resize "200x webp q90" }}
+        <img src="{{ $avatar.RelPermalink }}" alt="{{ $p.name }}" class="cv-header__avatar">
+        {{ else }}
+        <img src="{{ " output.png" | absURL }}" alt="{{ $p.name }}" class="cv-header__avatar">
+        {{ end }}
+        <div class="cv-header__name">
+            <h1>{{ $p.name }}</h1>
+            <p class="cv-header__titles">{{ delimit $p.titles " · " }}</p>
+        </div>
     </div>
     <nav class="cv-header__contact">
         {{- with $p.email }}<a href="mailto:{{ . }}">{{ . }}</a>{{- end }}
